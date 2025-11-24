@@ -15,14 +15,13 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home
-      }
+      },
+      {
+        path: "roadmap",
+        Component: Roadmap
+      },
     ]
   },
-  {
-    path: "roadmap",
-    Component: Roadmap
-  },
-
   {
     path: '/',
     Component: AuthLayout,

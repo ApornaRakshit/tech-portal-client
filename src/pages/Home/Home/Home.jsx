@@ -5,6 +5,7 @@ import Company from "../Company/Company";
 import Benefits from "../Benefits/Benefits";
 import BeExpert from "../BeExpert/BeExpert";
 import Roadmap from "../../../components/Roadmap";
+import HomeCards from "../../../components/HomeCards";
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <Banner />
             <Services></Services>
             <Roadmap></Roadmap>
+            <HomeCards></HomeCards>
             <Company></Company>
             <Benefits></Benefits>
             <BeExpert></BeExpert>
