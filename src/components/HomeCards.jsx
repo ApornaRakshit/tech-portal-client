@@ -81,8 +81,7 @@ const HomeCards = () => {
                         </p>
 
                         <button
-                            className="mt-4 w-full py-2 rounded-lg font-medium 
-              btn-outline border-white hover:bg-gradient-to-r from-blue-400 to-purple-400 transition-all"
+                            className="mt-4 py-2 btn btn-link text-black p-2"
                         >
                             Start Learning
                         </button>

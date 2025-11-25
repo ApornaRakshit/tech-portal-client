@@ -1,39 +1,51 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
-import Home from "../pages/Home/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
+import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import Roadmap from "../components/Roadmap";
-
+// import PrivateRoute from "../routes/PrivateRoute"; // if needed
 
 export const router = createBrowserRouter([
+  // ---------- Public Main Website ----------
   {
     path: "/",
-    Component: RootLayout,
+    element: <RootLayout />,
     children: [
       {
         index: true,
-        Component: Home
+        element: <Home />,
       },
       {
         path: "roadmap",
-        Component: Roadmap
+        element: <Roadmap />,
       },
-    ]
+      // Example for protected route:
+      // {
+      //   path: "dashboard",
+      //   element: (
+      //     <PrivateRoute>
+      //       <Dashboard />
+      //     </PrivateRoute>
+      //   ),
+      // },
+    ],
   },
+
+  // ---------- Authentication Pages ----------
   {
-    path: '/',
-    Component: AuthLayout,
+    path: "/auth",
+    element: <AuthLayout />,
     children: [
       {
-        path: 'login',
-        Component: Login
+        path: "login",
+        element: <Login />,
       },
       {
-        path: 'register',
-        Component: Register
-      }
-    ]
+        path: "register",
+        element: <Register />,
+      },
+    ],
   },
 ]);
