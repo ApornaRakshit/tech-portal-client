@@ -5,6 +5,11 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import Roadmap from "../components/Roadmap";
+import EventPage from "../pages/EventPage/EventPage";
+import EventDetailsPage from "../pages/EventPage/EventDetailsPage";
+import UserRegisterEvent from "../pages/EventPage/UserRegisterEvent";
+// import RegisterEvent from "../pages/RegisterEvent/RegisterEvent";
+
 // import PrivateRoute from "../routes/PrivateRoute"; // if needed
 
 export const router = createBrowserRouter([
@@ -21,12 +26,25 @@ export const router = createBrowserRouter([
         path: "roadmap",
         element: <Roadmap />,
       },
-      // Example for protected route:
+      {
+        path: "events",
+        element: <EventPage></EventPage>,
+      },
+      {
+        path: "events/:id",
+        element: <EventDetailsPage />
+      },
+      {
+        path: "events/register/:id",
+        element: <UserRegisterEvent />,
+      }
+      
+      
       // {
-      //   path: "dashboard",
+      //   path: "registerEvent",
       //   element: (
       //     <PrivateRoute>
-      //       <Dashboard />
+      //       <RegisterEvent></RegisterEvent>
       //     </PrivateRoute>
       //   ),
       // },

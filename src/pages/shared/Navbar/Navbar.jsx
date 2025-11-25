@@ -28,6 +28,11 @@ const Navbar = () => {
           Tech-Trends
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/events" className="font-medium">
+          Events
+        </NavLink>
+      </li>
     </>
   );
 
