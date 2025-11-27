@@ -9,9 +9,11 @@ const Roadmap = () => {
       }, []);
 
   const steps = [
-    { title: "Semester 1", details: "HTML, CSS, Computer Fundamentals" },
-    { title: "Semester 2", details: "JavaScript, Git & GitHub, Algorithms" },
-    { title: "Semester 3", details: "React, Node.js Basics, SQL" },
+    { title: "Phase1", details: "Computer Fundamentals, Programming Languages : C/C++" },
+    { title: "Phase2", details: "Competitve Programming, DSA" },
+    { title: "Phase3", details: "Git & GitHub, Web Development: HTML, CSS, JavaScript, React, Firebase, Nodejs, Express js, MongoDB" },
+    { title: "Phase4", details: "MySQL, SQL, python" },
+    { title: "Semester 3", details: "Software Development" },
     { title: "Semester 4", details: "MERN Stack, APIs, Authentication" },
     { title: "Semester 5", details: "Data Structures, DevOps Basics" },
     { title: "Semester 6", details: "AI/ML, Capstone Project, Interview Prep" },

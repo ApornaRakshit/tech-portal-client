@@ -8,6 +8,8 @@ import Roadmap from "../components/Roadmap";
 import EventPage from "../pages/EventPage/EventPage";
 import EventDetailsPage from "../pages/EventPage/EventDetailsPage";
 import UserRegisterEvent from "../pages/EventPage/UserRegisterEvent";
+import Tutorials from "../pages/Tutorials";
+import CompetitiveProgramming from "../pages/CompetitiveProgramming/CompetitiveProgramming";
 // import RegisterEvent from "../pages/RegisterEvent/RegisterEvent";
 
 // import PrivateRoute from "../routes/PrivateRoute"; // if needed
@@ -26,6 +28,16 @@ export const router = createBrowserRouter([
         path: "roadmap",
         element: <Roadmap />,
       },
+      {
+        path: "/tutorials",
+        element: <Tutorials />,
+      },
+      {
+        path: "/competitive-programming",
+        element: <CompetitiveProgramming />
+      },
+      
+      
       {
         path: "events",
         element: <EventPage></EventPage>,

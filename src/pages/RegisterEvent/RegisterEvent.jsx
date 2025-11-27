@@ -1,159 +1,105 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const RegisterEvent = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+const UserRegisterEvent = () => {
+  const { id } = useParams();
+  const [event, setEvent] = useState(null);
 
-  const onSubmit = (data) => {
-    console.log("Event registration data:", data);
+  const axiosSecure = useAxiosSecure();
+  const { register, handleSubmit, reset } = useForm();
 
-    alert("Event Registered Successfully!");
-    reset();
+  // Load event info from JSON
+  useEffect(() => {
+    fetch("/data/events.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const matched = data.find((e) => e.id === Number(id));
+        setEvent(matched);
+      });
+  }, [id]);
+
+  // 🔥 Save registration + increase event count (fixed)
+  const onSubmit = async (data) => {
+    const registrationData = {
+      name: data.name,
+      email: data.email,
+      eventId: event.id,
+      eventTitle: event.title,
+      date: event.date,
+      time: event.time,
+      mode: event.mode,
+      createdAt: new Date(),
+    };
+
+    try {
+      // 1️⃣ Save registration
+      const res = await axiosSecure.post("/event-registrations", registrationData);
+
+      console.log("Registration response:", res.data);
+
+      // 2️⃣ Check what backend returned
+      if (res.data.insertedId) {
+        toast.success("Registration Successful!");
+      } else {
+        toast.error(res.data.message || "Already registered for this event!");
+      }
+
+      reset();
+    } catch (error) {
+      console.error("Error saving:", error);
+      toast.error("Registration failed");
+    }
   };
 
+
+  if (!event) return <p className="text-center py-10">Loading...</p>;
+
   return (
-    <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
+    <div className="max-w-xl mx-auto mt-10 mb-10 bg-white shadow-md p-6 rounded-xl">
       <h2 className="text-2xl font-bold mb-6 text-center">
-        Register For Event
+        Register for {event.title}
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        {/* Event Title */}
+
         <div>
-          <label className="font-medium">Event Title</label>
+          <label className="font-medium">Name</label>
           <input
-            type="text"
-            {...register("eventTitle", { required: "Event title is required" })}
-            className="w-full mt-1 input input-bordered"
-            placeholder="AI Bootcamp 2025"
+            {...register("name", { required: true })}
+            className="input input-bordered w-full mt-1"
+            placeholder="Your name"
           />
-          {errors.eventTitle && (
-            <p className="text-red-500 text-sm">{errors.eventTitle.message}</p>
-          )}
         </div>
 
-        {/* Short Description */}
         <div>
-          <label className="font-medium">Event Description</label>
-          <textarea
-            {...register("description", {
-              required: "Event description is required",
-            })}
-            className="textarea textarea-bordered w-full mt-1"
-            placeholder="A short description about the event..."
-          />
-          {errors.description && (
-            <p className="text-red-500 text-sm">{errors.description.message}</p>
-          )}
-        </div>
-
-        {/* User/Student Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="font-medium">Your Name</label>
-            <input
-              type="text"
-              {...register("userName", { required: "Name is required" })}
-              className="w-full input input-bordered mt-1"
-              placeholder="Aporna Rakshit"
-            />
-            {errors.userName && (
-              <p className="text-red-500 text-sm">{errors.userName.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="font-medium">Your Email</label>
-            <input
-              type="email"
-              {...register("email", { required: "Email is required" })}
-              className="w-full input input-bordered mt-1"
-              placeholder="aporna@gmail.com"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
-            )}
-          </div>
-        </div>
-
-        {/* Event Venue */}
-        <div>
-          <label className="font-medium">Event Venue</label>
+          <label className="font-medium">Email</label>
           <input
-            type="text"
-            {...register("venue", { required: "Event venue is required" })}
-            className="w-full input input-bordered mt-1"
-            placeholder="Online (Google Meet) / Dhaka Campus"
+            {...register("email", { required: true })}
+            className="input input-bordered w-full mt-1"
+            placeholder="Your email"
           />
-          {errors.venue && (
-            <p className="text-red-500 text-sm">{errors.venue.message}</p>
-          )}
         </div>
 
-        {/* Interested / Going Users */}
-        <div>
-          <label className="font-medium">Number of Interested Users</label>
-          <input
-            type="number"
-            {...register("interested", {
-              required: "Interested users count required",
-            })}
-            className="w-full input input-bordered mt-1"
-            placeholder="40"
-          />
-          {errors.interested && (
-            <p className="text-red-500 text-sm">{errors.interested.message}</p>
-          )}
+        <input type="hidden" {...register("eventTitle")} value={event.title} />
+
+        <div className="bg-gray-100 p-4 rounded-lg">
+          <p><strong>Date:</strong> {event.date}</p>
+          <p><strong>Time:</strong> {event.time}</p>
+          <p><strong>Mode:</strong> {event.mode}</p>
         </div>
 
-        {/* Category */}
-        <div>
-          <label className="font-medium">Event Category</label>
-          <select
-            {...register("category", { required: "Category is required" })}
-            className="select select-bordered w-full mt-1"
-          >
-            <option value="">-- Choose Category --</option>
-            <option value="Workshop">Workshop</option>
-            <option value="Seminar">Seminar</option>
-            <option value="Webinar">Webinar</option>
-            <option value="Career Meetup">Career Meetup</option>
-            <option value="Bootcamp">Bootcamp</option>
-          </select>
-          {errors.category && (
-            <p className="text-red-500 text-sm">{errors.category.message}</p>
-          )}
-        </div>
-
-        {/* Event Status */}
-        <div>
-          <label className="font-medium">Event Status</label>
-          <select
-            {...register("status", { required: "Status is required" })}
-            className="select select-bordered w-full mt-1"
-          >
-            <option value="">-- Choose Status --</option>
-            <option value="upcoming">Upcoming</option>
-            <option value="ongoing">Ongoing</option>
-            <option value="completed">Completed</option>
-          </select>
-          {errors.status && (
-            <p className="text-red-500 text-sm">{errors.status.message}</p>
-          )}
-        </div>
-
-        {/* Register Button */}
-        <button className="btn hover:bg-gradient-to-r from-blue-400 to-purple-400 hover:text-white mx-auto block mt-4">
-          Register For Event
+        <button
+          type="submit"
+          className="btn bg-gradient-to-r from-blue-400 to-purple-400 text-white mx-auto block mt-4"
+        >
+          Confirm Registration
         </button>
       </form>
     </div>
   );
 };
 
-export default RegisterEvent;
+export default UserRegisterEvent;

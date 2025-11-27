@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Save user to your database (Mongo / etc.)
+  // 🔹 Save user to MongoDB
   const saveUserToDb = async (firebaseUser) => {
     if (!firebaseUser?.email) return;
 
@@ -33,7 +33,8 @@ const AuthProvider = ({ children }) => {
     };
 
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+      // FIXED: Hard-coded correct backend URL
+      await fetch("http://localhost:5000/users", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(userData),

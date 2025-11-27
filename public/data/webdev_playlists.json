@@ -1,0 +1,70 @@
+[
+    {
+        "id": 7,
+        "category": "HTML",
+        "title": "HTML Full Course",
+        "channel": "Programming with Mosh",
+        "thumbnail": "mosh-program.jpg",
+        "description": "Master HTML from scratch with real examples.",
+        "link": "https://www.youtube.com/watch?v=qz0aGYrrlhU"
+      },
+      {
+        "id": 8,
+        "category": "HTML",
+        "title": "HTML & CSS Tutorial for Beginners",
+        "channel": "Net Ninja",
+        "thumbnail": "net-ninja.jpg",
+        "description": "A clean HTML & CSS beginner-friendly playlist.",
+        "link": "https://www.youtube.com/playlist?list=PL4cUxeGkcC9gQeDH6xYhmO-db2mhoTSrT"
+      },
+    
+      {
+        "id": 10,
+        "category": "CSS",
+        "title": "Tailwind CSS Full Course",
+        "channel": "Learn with Sumit",
+        "thumbnail": "learnSumit.jpg",
+        "description": "Tailwind CSS from scratch with practical UI projects.",
+        "link": "https://www.youtube.com/playlist?list=PLHiZ4m8vCp9P23SqlHL0QAqiwS_oCofV2"
+      },
+    
+      {
+        "id": 11,
+        "category": "Web Development",
+        "title": "Web (Hindi)",
+        "channel": "Apna College",
+        "thumbnail": "webApna.jpg",
+        "description": "Complete web development in Hindi for beginners.",
+        "link": "https://www.youtube.com/playlist?list=PLfqMhTWNBTe3H6c9OGXb5_6wcc1Mca52n"
+      },
+    
+      {
+        "id": 13,
+        "category": "React",
+        "title": "React Tutorial for Beginners",
+        "channel": "Learn with Sumit",
+        "thumbnail": "ReactSumit.jpg",
+        "description": "A complete series covering React fundamentals & hooks.",
+        "link": "https://www.youtube.com/playlist?list=PLHiZ4m8vCp9M6HVQv7a36cp8LKzyHIePr"
+      },
+    
+      {
+        "id": 15,
+        "category": "Node",
+        "title": "Node.js Crash Course",
+        "channel": "Dave Gray",
+        "thumbnail": "dave-gray.jpg",
+        "description": "Learn Node.js, Express, routing, and APIs.",
+        "link": "https://www.youtube.com/watch?v=f2EqECiTBL8&t=12s"
+      },
+    
+      {
+        "id": 16,
+        "category": "MERN",
+        "title": "Complete MERN Stack Course",
+        "channel": "Dave Gray",
+        "thumbnail": "dave-gray.jpg",
+        "description": "Full MERN stack in one playlist: React, Node, Express, MongoDB.",
+        "link": "https://www.youtube.com/watch?v=CvCiNeLnZ00"
+      }
+]

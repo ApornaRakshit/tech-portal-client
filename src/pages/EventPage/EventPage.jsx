@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import EventCard from "../../components/EventCard/EventCard";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch("/data/events.json") // json inside public/data/events.json
-      .then((res) => res.json())
-      .then((data) => setEvents(data))
+    axiosSecure.get("/events")
+      .then((res) => setEvents(res.data))
       .catch(err => console.error("Error loading events:", err));
   }, []);
 
@@ -19,7 +20,7 @@ const EventPage = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {events.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <EventCard key={event._id} event={event} />
         ))}
       </div>
     </div>

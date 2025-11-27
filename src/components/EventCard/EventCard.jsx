@@ -51,7 +51,8 @@ const EventCard = ({ event }) => {
 
                     <div className="flex items-center gap-1 text-black text-sm">
                         <FiUsers className="text-lg" />
-                        <span className="font-semibold">+{event.interested} Interested</span>
+                        <span className="font-semibold">+{event.registeredCount || 0} Interested
+                        </span>
                     </div>
 
 

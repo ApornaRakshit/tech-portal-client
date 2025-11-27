@@ -8,7 +8,7 @@ import { Carousel } from 'react-responsive-carousel';
 const Banner = () => {
     return (
         <Carousel autoPlay infiniteLoop>
-            <div className="relative h-[500px] pt-10">
+            <div className="relative h-[500px]">
                 <img src={bannerImg1} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
