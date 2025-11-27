@@ -10,9 +10,15 @@ import EventDetailsPage from "../pages/EventPage/EventDetailsPage";
 import UserRegisterEvent from "../pages/EventPage/UserRegisterEvent";
 import Tutorials from "../pages/Tutorials";
 import CompetitiveProgramming from "../pages/CompetitiveProgramming/CompetitiveProgramming";
-// import RegisterEvent from "../pages/RegisterEvent/RegisterEvent";
 
-// import PrivateRoute from "../routes/PrivateRoute"; // if needed
+// Dashboard imports
+import DashboardLayout from "../layouts/DashboardLayout";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import ProfileSettings from "../pages/Dashboard/ProfileSettings";
+import LearningPath from "../pages/Dashboard/LearningPath";
+import MyCourses from "../pages/Dashboard/MyCourses";
+import Events from "../pages/Dashboard/Events";
+import PrivateRoute from "../routes/PrivateRoute";
 
 export const router = createBrowserRouter([
   // ---------- Public Main Website ----------
@@ -34,32 +40,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "/competitive-programming",
-        element: <CompetitiveProgramming />
+        element: <CompetitiveProgramming />,
       },
-      
-      
       {
         path: "events",
-        element: <EventPage></EventPage>,
+        element: <EventPage />,
       },
       {
         path: "events/:id",
-        element: <EventDetailsPage />
+        element: <EventDetailsPage />,
       },
       {
         path: "events/register/:id",
         element: <UserRegisterEvent />,
-      }
-      
-      
-      // {
-      //   path: "registerEvent",
-      //   element: (
-      //     <PrivateRoute>
-      //       <RegisterEvent></RegisterEvent>
-      //     </PrivateRoute>
-      //   ),
-      // },
+      },
     ],
   },
 
@@ -75,6 +69,38 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+    ],
+  },
+
+  // ---------- Dashboard (Protected Later) ----------
+  {
+    path: "/dashboard",
+    element:
+      (<PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+      ),
+    children: [
+      {
+        index: true,
+        element: <DashboardHome />,
+      },
+      {
+        path: "profile",
+        element: <ProfileSettings />,
+      },
+      {
+        path: "learning-path",
+        element: <LearningPath />,
+      },
+      {
+        path: "my-courses",
+        element: <MyCourses />,
+      },
+      {
+        path: "events",
+        element: <Events />,
       },
     ],
   },

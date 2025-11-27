@@ -2,11 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { useAuthContext } from "../../../contexts/AuthContext/useAuthContext";
+import { useAuth } from "../../../contexts/AuthContext/AuthContext";   // ✅ FIXED
 import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const { loginUser } = useAuthContext();
+  const { loginUser } = useAuth();           // ✅ FIXED
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

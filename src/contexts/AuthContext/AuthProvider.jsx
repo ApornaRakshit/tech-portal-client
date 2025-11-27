@@ -1,6 +1,4 @@
-// src/contexts/AuthContext/AuthProvider.jsx
-import { useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../../firebase/firebase.init";
 import {
   onAuthStateChanged,
@@ -13,6 +11,11 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+export const AuthContext = createContext(null);
+
+// Hook to use the Auth Context
+export const useAuth = () => useContext(AuthContext);
+
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -21,7 +24,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Save user to MongoDB
   const saveUserToDb = async (firebaseUser) => {
     if (!firebaseUser?.email) return;
 
@@ -32,19 +34,13 @@ const AuthProvider = ({ children }) => {
       uid: firebaseUser.uid,
     };
 
-    try {
-      // FIXED: Hard-coded correct backend URL
-      await fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(userData),
-      });
-    } catch (err) {
-      console.error("Failed to save user:", err);
-    }
+    await fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(userData),
+    });
   };
 
-  // ---------- Auth functions ----------
   const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -60,36 +56,20 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // ---------- Social Logins ----------
-  const signInWithGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
+  const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
+  const signInWithGithub = () => signInWithPopup(auth, githubProvider);
+  const signInWithFacebook = () => signInWithPopup(auth, facebookProvider);
 
-  const signInWithGithub = () => {
-    setLoading(true);
-    return signInWithPopup(auth, githubProvider);
-  };
-
-  const signInWithFacebook = () => {
-    setLoading(true);
-    return signInWithPopup(auth, facebookProvider);
-  };
-
-  // ---------- Listen for auth changes ----------
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser || null);
-      if (currentUser) {
-        await saveUserToDb(currentUser);
-      }
+      setUser(currentUser);
+      if (currentUser) await saveUserToDb(currentUser);
       setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  // ---------- Context value ----------
   const authInfo = {
     user,
     loading,
@@ -102,7 +82,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

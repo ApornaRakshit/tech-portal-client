@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import TechPortalLogo from "../TechPortalLogo/TechPortalLogo";
-import { useAuthContext } from "../../../contexts/AuthContext/useAuthContext";
+import { useAuth } from "../../../contexts/AuthContext/AuthProvider";
+   // ✅ FIXED
 
 const Navbar = () => {
-  const { user, logoutUser } = useAuthContext();
+  const { user, logoutUser } = useAuth();   // ✅ FIXED
 
   const navItems = (
     <>

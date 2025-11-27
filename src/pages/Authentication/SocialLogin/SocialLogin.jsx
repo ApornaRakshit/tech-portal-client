@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthContext } from "../../../contexts/AuthContext/useAuthContext";
+import { useAuth } from "../../../contexts/AuthContext/AuthContext";  // ✅ FIXED
 import { toast } from "react-hot-toast";
 
 const SocialLogin = () => {
@@ -7,11 +7,11 @@ const SocialLogin = () => {
     signInWithGoogle,
     signInWithGithub,
     signInWithFacebook,
-  } = useAuthContext();
+  } = useAuth();   // ✅ FIXED
 
   const handleProvider = (providerFn, name) => {
     providerFn()
-      .then((res) => {
+      .then(() => {
         toast.success(`Logged in with ${name}`);
       })
       .catch((err) => {
@@ -28,12 +28,14 @@ const SocialLogin = () => {
       >
         Continue with Google
       </button>
+
       <button
         onClick={() => handleProvider(signInWithGithub, "GitHub")}
         className="btn w-full bg-base-200"
       >
         Continue with GitHub
       </button>
+
       <button
         onClick={() => handleProvider(signInWithFacebook, "Facebook")}
         className="btn w-full bg-base-200"
