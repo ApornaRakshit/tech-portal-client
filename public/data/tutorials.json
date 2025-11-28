@@ -3,7 +3,7 @@
     "id": 1,
     "title": "C++ Full Course for Beginners",
     "channel": "Apna College",
-    "thumbnail": "apna-college.jpg",
+    "thumbnail": "/tutorials/apna-college.jpg",
     "description": "Learn C++ from basics...",
     "link": "https://www.youtube.com/watch?v=z9bZufPHFLU"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "title": "DSA 450 Questions (Step-by-Step)",
     "channel": "Love Babbar",
-    "thumbnail": "jenny-lecture.jpg",
+    "thumbnail": "/tutorials/jenny-lecture.jpg",
     "description": "A complete DSA problem-solving playlist...",
     "link": "https://www.youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU"
   },
@@ -19,17 +19,16 @@
     "id": 3,
     "title": "CSES Problem Set",
     "channel": "CSES",
-    "thumbnail": "code-harry1.jpg",
+    "thumbnail": "/tutorials/code-harry1.jpg",
     "description": "Introductory algorithm problems",
     "link": "https://cses.fi/problemset/"
   },
-
   {
     "id": 4,
     "category": "Intermediate",
     "title": "A2Z DSA Sheet + Full Tutorial",
     "channel": "Striver (take U forward)",
-    "thumbnail": "take-forward.jpg",
+    "thumbnail": "/tutorials/take-forward.jpg",
     "description": "Complete beginner-to-advanced DSA playlist covering arrays, recursion, graph, DP, and more.",
     "link": "https://www.youtube.com/@takeUforward"
   },
@@ -38,7 +37,7 @@
     "category": "Intermediate",
     "title": "DSA + Coding Interview Basics",
     "channel": "CodeWithHarry",
-    "thumbnail": "code-harry.jpg",
+    "thumbnail": "/tutorials/code-harry.jpg",
     "description": "Simple explanations of basic and intermediate DSA concepts for problem solving.",
     "link": "https://www.youtube.com/@CodeWithHarry"
   },
@@ -47,7 +46,7 @@
     "category": "Intermediate",
     "title": "AtCoder Beginner Contests",
     "channel": "AtCoder",
-    "thumbnail": "datascience.jpg",
+    "thumbnail": "/tutorials/datascience.jpg",
     "description": "World-class beginner-friendly programming contests to build competitive programming confidence.",
     "link": "https://atcoder.jp"
   }

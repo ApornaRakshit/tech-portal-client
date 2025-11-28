@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "Data Science Full Course",
+      "channel": "freeCodeCamp",
+      "thumbnail": "DataFree.jpg",
+      "description": "12-hour complete data science guide covering Python, Pandas, NumPy, ML & statistics.",
+      "link": "https://www.youtube.com/watch?v=ua-CiDNNj30"
+    },
+    {
+      "id": 2,
+      "title": "Python for Data Science",
+      "channel": "Krish Naik",
+      "thumbnail": "DataMosh.jpg",
+      "description": "Hands-on Python concepts used in real-world analytics and ML.",
+      "link": "https://www.youtube.com/watch?v=_uQrJ0TkZlc"
+    },
+    {
+      "id": 3,
+      "title": "Pandas + NumPy Crash Course",
+      "channel": "Corey Schafer",
+      "thumbnail": "DataKeith.jpg",
+      "description": "Master the most important tools for data analysis.",
+      "link": "https://www.youtube.com/watch?v=vmEHCJofslg"
+    }
+  ]
+  

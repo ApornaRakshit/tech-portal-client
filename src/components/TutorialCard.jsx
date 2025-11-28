@@ -1,42 +1,54 @@
 /* eslint-disable react/prop-types */
 const TutorialCard = ({ tutorial, clickable = true }) => {
-  const imageUrl = new URL(
-    `/public/tutorials/${tutorial.thumbnail}`,
-    import.meta.url
-  ).href;
+  // Fix image URL
+  const imageUrl = tutorial.thumbnail.startsWith("/")
+    ? tutorial.thumbnail
+    : `/tutorials/${tutorial.thumbnail}`;
 
   const Wrapper = clickable ? "a" : "div";
 
   return (
     <Wrapper
-      href={clickable ? tutorial.link : undefined}
+      href={tutorial.link}
       target="_blank"
-      className="block bg-white rounded-xl shadow hover:shadow-xl transition p-3 cursor-pointer border hover:border-blue-500 no-underline h-80"
+      rel="noopener noreferrer"
+      className="block"
     >
-      <div className="h-full flex flex-col">
+      <div
+        className="hover:bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl shadow-md overflow-hidden 
+        transform transition-all duration-300 
+        hover:scale-105 hover:shadow-xl 
+        h-full flex flex-col"
+      >
+        {/* Thumbnail */}
+        <div className="font-semibold w-full overflow-hidden">
+          <img
+            src={imageUrl}
+            alt={tutorial.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        {/* Image */}
-        <img
-          src={imageUrl}
-          className="w-full h-44 object-cover rounded-lg"
-          alt={tutorial.title}
-        />
+        {/* Content */}
+        <div className="flex flex-col justify-between p-4 flex-grow">
+          <div>
+            <h3 className="font-semibold text-lg mb-1 line-clamp-2">
+              {tutorial.title}
+            </h3>
+            <p className="text-gray-600 text-sm line-clamp-1">
+              {tutorial.channel}
+            </p>
+          </div>
 
-        {/* Title */}
-        <h2 className="text-lg font-semibold mt-3">{tutorial.title}</h2>
-
-        {/* Channel */}
-        <p className="text-sm text-gray-500">{tutorial.channel}</p>
-
-        {/* Description */}
-        <p className="text-sm text-gray-600 mt-1 line-clamp-2">
-          {tutorial.description}
-        </p>
-
-        {/* Button text */}
-        <span className="text-blue-600 font-medium mt-auto">
-          Watch Tutorial →
-        </span>
+          {/* Button */}
+          <button
+            className="mt-4 text-black py-2 px-4 
+            rounded-lg font-semibold 
+            btn-outline w-18 hover:bg-gradient-to-r from-blue-400 to-purple-400"
+          >
+            View
+          </button>
+        </div>
       </div>
     </Wrapper>
   );

@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "Gentle Introduction to Machine Learning",
+      "channel": "StarQueueWithJoss",
+      "thumbnail": "StartML.jpg",
+      "description": "Comprehensive introduction to ML with Python, scikit-learn, and math basics.",
+      "link": "https://www.youtube.com/watch?v=Gv9_4yMHFhI"
+    },
+    {
+      "id": 2,
+      "title": "ML Basics for Beginners",
+      "channel": "Code With Mosh",
+      "thumbnail": "MoshML.jpg",
+      "description": "Easy explanations of regression, classification, clustering.",
+      "link": "https://www.youtube.com/watch?v=7eh4d6sabA0"
+    },
+    {
+      "id": 3,
+      "title": "Free Code Camp",
+      "channel": "FreeCodeCamp",
+      "thumbnail": "FreeML.jpg",
+      "description": "Practical ML workflow with projects and datasets.",
+      "link": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+    }
+  ]
+  

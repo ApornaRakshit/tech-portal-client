@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "title": "Artificial Intelligence Full Course",
+      "channel": "Simplilearn",
+      "thumbnail": "EdurekaAi.jpg",
+      "description": "Complete AI roadmap including ML, neural networks, expert systems.",
+      "link": "https://www.youtube.com/watch?v=JMUxmLyrhSk"
+    },
+    {
+      "id": 2,
+      "title": "Neural Networks Explained",
+      "channel": "3Blue1Brown",
+      "thumbnail": "BlueAi.png",
+      "description": "Visual and intuitive explanation of how neural networks work.",
+      "link": "https://www.youtube.com/watch?v=aircAruvnKk"
+    }
+  ]
+  

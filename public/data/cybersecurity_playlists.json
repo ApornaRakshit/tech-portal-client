@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "title": "Cyber Security Full Course",
+      "channel": "Simplilearn",
+      "thumbnail": "SimplilearnCyber.jpg",
+      "description": "Complete beginner-friendly cyber security training.",
+      "link": "https://www.youtube.com/watch?v=inWWhr5tnEA"
+    },
+    {
+      "id": 2,
+      "title": "Ethical Hacking Basics",
+      "channel": "Free Code Camp",
+      "thumbnail": "EthicalFree.jpg",
+      "description": "Understand penetration testing, Linux, tools, and attacks.",
+      "link": "https://www.youtube.com/watch?v=3Kq1MIfTWCE"
+    }
+  ]
+  
