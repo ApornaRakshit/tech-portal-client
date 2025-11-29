@@ -8,9 +8,16 @@ import dataImg from "../assets/images/datascience.jpg";
 import aiImg from "../assets/images/ai.jpg";
 import mlImg from "../assets/images/ml.jpg";
 import cyberImg from "../assets/images/cyber.jpg";
+import generalcareer from "../assets/images/general-career.png"
 
 // Card data
 const cards = [
+    {
+        title: "Career Advice",
+        icon: "📈",
+        img: generalcareer,
+        desc: "Articles, blogs, roadmaps, guides for all you need to know.",
+    },
     {
         title: "Competitive Programming",
         icon: "⚡",
@@ -58,7 +65,6 @@ const cards = [
 const HomeCards = () => {
     return (
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
             {cards.map((card, index) => (
                 <div
                     key={index}
@@ -67,7 +73,7 @@ const HomeCards = () => {
                     <img
                         src={card.img}
                         alt={card.title}
-                        className="h-40 w-full object-cover"
+                        className="h-50 w-full object-cover"
                     />
 
                     <div className="p-4">

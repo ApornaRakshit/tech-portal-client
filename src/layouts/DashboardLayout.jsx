@@ -1,58 +1,124 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import useRole from "../hooks/useRole";
+import TechPortalLogo from "../pages/shared/TechPortalLogo/TechPortalLogo";
 
 const DashboardLayout = () => {
-  const [role] = useRole();
+  const [role, loading] = useRole();
+
+  if (loading) {
+    return <div className="p-10 text-center">Loading...</div>;
+  }
+
+  // ⭐ Active + Hover Styling for All Menu Items
+  const linkClass = ({ isActive }) =>
+    `flex items-center gap-3 px-3 py-2 rounded-lg transition ${
+      isActive
+        ? "bg-purple-100 text-purple-700 font-semibold"
+        : "text-gray-700 hover:bg-gray-100"
+    }`;
 
   return (
-    <div className="drawer lg:drawer-open bg-base-100 min-h-screen">
-      <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+    <div className="flex min-h-screen bg-gray-100">
 
-      {/* Content */}
-      <div className="drawer-content p-6">
-        <Outlet />
-      </div>
+      {/* ------------------ Sidebar ------------------ */}
+      <aside className="w-72 bg-white border-r p-6 shadow-sm">
 
-      {/* Sidebar */}
-      <div className="drawer-side">
-        <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-        <ul className="menu bg-base-200 w-80 p-4">
+        {/* Logo */}
+        <div className="mb-10 flex justify-center">
+          <TechPortalLogo />
+        </div>
 
-          <li><NavLink to="/dashboard">Overview</NavLink></li>
-          <li><NavLink to="/dashboard/profile">Profile Settings</NavLink></li>
+        {/* GENERAL SECTION */}
+        <p className="text-xs font-semibold text-gray-400 uppercase mb-2 px-2">
+          General
+        </p>
 
-          {/* STUDENT */}
-          {role === "student" && (
-            <>
-              <li className="menu-title">Student</li>
-              <li><NavLink to="/dashboard/learning-path">Learning Path</NavLink></li>
-              <li><NavLink to="/dashboard/my-courses">My Courses</NavLink></li>
-              <li><NavLink to="/dashboard/events">Events</NavLink></li>
-            </>
-          )}
+        <ul className="space-y-1 mb-6">
+          <li>
+            <NavLink to="/dashboard/admin/overview" className={linkClass}>
+              <span>📊</span> Overview
+            </NavLink>
+          </li>
 
-          {/* PROFESSIONAL */}
-          {role === "professional" && (
-            <>
-              <li className="menu-title">Professional</li>
-              <li><NavLink to="/dashboard/advanced-tutorials">Advanced Tutorials</NavLink></li>
-              <li><NavLink to="/dashboard/career-guidance">Career Guidance</NavLink></li>
-            </>
-          )}
-
-          {/* ADMIN */}
-          {role === "admin" && (
-            <>
-              <li className="menu-title">Admin</li>
-              <li><NavLink to="/dashboard/admin/users">Manage Users</NavLink></li>
-              <li><NavLink to="/dashboard/admin/tutorials">Add Tutorials</NavLink></li>
-              <li><NavLink to="/dashboard/admin/events">Create Events</NavLink></li>
-            </>
-          )}
-
+          <li>
+            <NavLink to="/dashboard/profile" className={linkClass}>
+              <span>⚙️</span> Profile Settings
+            </NavLink>
+          </li>
         </ul>
-      </div>
+
+        {/* ------------------ Student Section ------------------ */}
+        {role === "student" && (
+          <>
+            <p className="text-xs font-semibold text-gray-400 uppercase mb-2 px-2">
+              Student
+            </p>
+
+            <ul className="space-y-1">
+              <li>
+                <NavLink to="/dashboard/learning-path" className={linkClass}>
+                  <span>📘</span> Learning Path
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/my-courses" className={linkClass}>
+                  <span>🎯</span> My Courses
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/events" className={linkClass}>
+                  <span>📅</span> Events
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
+
+        {/* ------------------ Admin Section ------------------ */}
+        {role === "admin" && (
+          <>
+            <p className="text-xs font-semibold text-gray-400 uppercase mt-6 mb-2 px-2">
+              Admin
+            </p>
+
+            <ul className="space-y-1">
+              <li>
+                <NavLink to="/dashboard/admin/profile" className={linkClass}>
+                  <span>👤</span> Admin Profile
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/admin/users" className={linkClass}>
+                  <span>🧑‍🤝‍🧑</span> Manage Users
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/admin/tutorials" className={linkClass}>
+                  <span>📚</span> Add Tutorials
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/admin/events" className={linkClass}>
+                  <span>🗂️</span> Create Events
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
+
+      </aside>
+
+      {/* ------------------ Main Content ------------------ */}
+      <main className="flex-1 p-8">
+        <Outlet />
+      </main>
+
     </div>
   );
 };

@@ -44,7 +44,7 @@ const TutorialCard = ({ tutorial, clickable = true }) => {
           <button
             className="mt-4 text-black py-2 px-4 
             rounded-lg font-semibold 
-            btn-outline w-18 hover:bg-gradient-to-r from-blue-400 to-purple-400"
+            btn-outline w-18 hover:bg-gradient-to-r from-blue-300 to-purple-300"
           >
             View
           </button>

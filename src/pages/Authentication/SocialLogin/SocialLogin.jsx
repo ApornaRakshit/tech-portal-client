@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../../../contexts/AuthContext/AuthContext";  // ✅ FIXED
+import { useAuth } from "../../../contexts/AuthContext/AuthProvider";   // ✅ FIXED
 import { toast } from "react-hot-toast";
 
 const SocialLogin = () => {

@@ -7,9 +7,9 @@ const Footer = () => {
             <aside>
                 <TechPortalLogo></TechPortalLogo>
                 <p className="font-bold">
-                    ACME Industries Ltd.
+                    TEC Industries Ltd.
                     <br />
-                    Providing reliable tech since 1992
+                    Providing reliable tech since 2022
                 </p>
                 <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
             </aside>

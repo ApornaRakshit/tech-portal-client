@@ -2,8 +2,48 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { useAuth } from "../../../contexts/AuthContext/AuthContext";   // ✅ FIXED
+import { useAuth } from "../../../contexts/AuthContext/AuthProvider";    // ✅ FIXED
 import { toast } from "react-hot-toast";
+
+import { db } from "../../../firebase/firebase.init";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+
+const createUserProfile = async (user) => {
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+
+  if (!snap.exists()) {
+    await setDoc(ref, {
+      name: user.displayName || "",
+      email: user.email,
+      photoURL: user.photoURL || "",
+      role: "Student",
+      bio: "",
+      phone: "",
+      facebook: "",
+      linkedin: "",
+      github: "",
+      resumeURL: "",
+      academic: {
+        studentId: "",
+        session: "",
+        semester: "",
+        dob: "",
+        department: ""
+      },
+      address: {
+        street: "",
+        city: "",
+        state: "",
+        country: "",
+        postal: ""
+      },
+      skills: []
+    });
+  }
+};
+
+
 
 const Login = () => {
   const { loginUser } = useAuth();           // ✅ FIXED
@@ -17,13 +57,30 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  // const onSubmit = async (data) => {
+  //   try {
+  //     await loginUser(data.email, data.password);
+  //     toast.success("Login successful");
+  //     navigate(from, { replace: true });
+  //   } catch (err) {
+  //     console.error(err);
+  //     toast.error(err.message);
+  //   }
+  // };
+
+
+
   const onSubmit = async (data) => {
     try {
-      await loginUser(data.email, data.password);
+      const result = await loginUser(data.email, data.password);
+  
+      await createUserProfile(result.user);   // ⭐ create profile in Firestore
+  
       toast.success("Login successful");
-      navigate(from, { replace: true });
+  
+      navigate("/dashboard/profile");         // ⭐ go to Profile page
+  
     } catch (err) {
-      console.error(err);
       toast.error(err.message);
     }
   };

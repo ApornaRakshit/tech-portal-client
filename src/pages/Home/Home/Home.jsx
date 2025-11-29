@@ -4,19 +4,19 @@ import Services from "../Services/Services";
 import Company from "../Company/Company";
 import Benefits from "../Benefits/Benefits";
 import BeExpert from "../BeExpert/BeExpert";
-import Roadmap from "../../../components/Roadmap";
-import HomeCards from "../../../components/HomeCards";
+import HomeRoadmap from "../../../components/HomeRoadmap";
+import Footer from "../../shared/Footer/Footer";
 
 const Home = () => {
     return (
         <div>
             <Banner />
             <Services></Services>
-            <Roadmap></Roadmap>
-            <HomeCards></HomeCards>
+            <HomeRoadmap />
             <Company></Company>
             <Benefits></Benefits>
             <BeExpert></BeExpert>
+            <Footer></Footer>
         </div>
     );
 };
