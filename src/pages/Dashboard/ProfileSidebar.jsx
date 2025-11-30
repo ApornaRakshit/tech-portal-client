@@ -1,42 +1,63 @@
-import { FaHome, FaUserFriends, FaEnvelope, FaUserTie, FaBriefcase, FaCalendarAlt, FaBookOpen } from "react-icons/fa";
-import TechPortalLogo from "../shared/TechPortalLogo/TechPortalLogo";
+import {
+  FiMap,
+  FiBookOpen,
+  FiCalendar,
+  FiBookmark,
+} from "react-icons/fi";
 
-const ProfileSidebar = ({ profile }) => {
+import TechPortalLogo from "../shared/TechPortalLogo/TechPortalLogo";
+import { NavLink } from "react-router-dom";
+
+const ProfileSidebar = () => {
+  const linkClass = ({ isActive }) =>
+    `flex items-center gap-3 px-4 py-2 rounded-lg text-[15px] font-medium transition 
+     ${isActive ? "bg-purple-100 text-purple-700 font-semibold" : "hover:bg-gray-100"}`;
+
   return (
-    <div className="w-full lg:w-72 mt-12 bg-gray-100 border-r h-full p-6">
+    <div className="w-full lg:w-72 bg-white min-h-screen border-r px-6 py-8">
 
       {/* Logo */}
-      <TechPortalLogo></TechPortalLogo>
-
-      {/* User Photo */}
-      <div className="flex flex-col items-center">
-        <img
-          src={profile.photoURL}
-          className="w-24 h-24 rounded-full object-cover border shadow"
-        />
-        <h2 className="text-lg font-semibold mt-3">{profile.name}</h2>
-        <p className="text-gray-600">{profile.role}</p>
-
-        <p className="mt-4 text-gray-700 text-sm">
-          <strong>Session:</strong> {profile.academic.session || "N/A"}
-        </p>
-
-        <p className="text-gray-700 text-sm">
-          <strong>Department:</strong>
-          <br /> {profile.academic.department}
-        </p>
+      <div className="mb-10">
+        <TechPortalLogo />
       </div>
 
-      {/* Nav Items */}
-      <div className="mt-10 space-y-4 text-gray-700 font-medium">
-        <p className="flex items-center gap-3"><FaHome /> Home</p>
-        <p className="flex items-center gap-3"><FaUserFriends /> My Posts</p>
-        <p className="flex items-center gap-3"><FaEnvelope /> Messages</p>
-        <p className="flex items-center gap-3"><FaUserTie /> Connect</p>
-        <p className="flex items-center gap-3"><FaBookOpen /> Mentorship</p>
-        <p className="flex items-center gap-3"><FaBriefcase /> Jobs</p>
-        <p className="flex items-center gap-3"><FaCalendarAlt /> Events</p>
-        <p className="flex items-center gap-3"><FaBookOpen /> Resources</p>
+      {/* SECTION TITLE */}
+      <p className="text-xs font-bold text-gray-500 mb-2 tracking-wide">GENERAL</p>
+
+      {/* GENERAL ITEMS */}
+      <div className="space-y-1 mb-8">
+
+        <NavLink to="/dashboard/profile" className={linkClass}>
+          <FiBookmark size={18} />
+          Profile Settings
+        </NavLink>
+      </div>
+
+      {/* SECTION TITLE */}
+      <p className="text-xs font-bold text-gray-500 mb-2 tracking-wide">STUDENT</p>
+
+      {/* STUDENT ITEMS */}
+      <div className="space-y-1">
+
+        <NavLink to="/dashboard/learning-path" className={linkClass}>
+          <FiMap size={18} />
+          Learning Path
+        </NavLink>
+
+        <NavLink to="/dashboard/courses" className={linkClass}>
+          <FiBookOpen size={18} />
+          My Courses
+        </NavLink>
+
+        <NavLink to="/dashboard/events" className={linkClass}>
+          <FiCalendar size={18} />
+          Events
+        </NavLink>
+
+        <NavLink to="/dashboard/bookmarks" className={linkClass}>
+          <FiBookmark size={18} />
+          Bookmark
+        </NavLink>
       </div>
     </div>
   );

@@ -3,7 +3,8 @@ import { useAuth } from "../contexts/AuthContext/AuthProvider";
 const useRole = () => {
   const { userProfile, loading } = useAuth();
 
-  const role = userProfile?.role || "student";
+  // Extract role from Firestore profile
+  const role = userProfile?.role || null;
 
   return [role, loading];
 };

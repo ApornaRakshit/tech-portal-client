@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import AuthLayout from "../layouts/AuthLayout";
+
+// Public pages
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
@@ -19,19 +21,24 @@ import LearningPath from "../pages/Dashboard/LearningPath";
 import MyCourses from "../pages/Dashboard/MyCourses";
 import Events from "../pages/Dashboard/Events";
 
-// Routes
+// Role-based routes
 import PrivateRoute from "../routes/PrivateRoute";
-import AdminRoute from "../routes/AdminRoute";
+import AdminRoute from "../routes/protected/AdminRoute";
+import StudentRoute from "../routes/protected/StudentRoute";
+import ProfessionalRoute from "../routes/protected/ProfessionalRoute";
 
-// Admin Pages
+// Admin pages
 import AdminOverview from "../pages/Dashboard/Admin/AdminOverview";
 import AdminProfile from "../pages/Dashboard/Admin/AdminProfile";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AddTutorials from "../pages/Dashboard/Admin/AddTutorials";
 import CreateEvents from "../pages/Dashboard/Admin/CreateEvents";
 
+// Others
+import Unauthorized from "../pages/Unauthorized";
+
 export const router = createBrowserRouter([
-  // ---------- Public Website ----------
+  // ---------- PUBLIC WEBSITE ----------
   {
     path: "/",
     element: <RootLayout />,
@@ -43,10 +50,11 @@ export const router = createBrowserRouter([
       { path: "events", element: <EventPage /> },
       { path: "events/:id", element: <EventDetailsPage /> },
       { path: "events/register/:id", element: <UserRegisterEvent /> },
+      { path: "unauthorized", element: <Unauthorized /> },
     ],
   },
 
-  // ---------- Authentication ----------
+  // ---------- AUTH ROUTES ----------
   {
     path: "/auth",
     element: <AuthLayout />,
@@ -56,7 +64,7 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // ---------- Dashboard (Protected) ----------
+  // ---------- DASHBOARD ----------
   {
     path: "/dashboard",
     element: (
@@ -66,10 +74,16 @@ export const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <DashboardHome /> },
+
+      // Student-only routes
+      { path: "learning-path", element: <StudentRoute><LearningPath /></StudentRoute> },
+      { path: "my-courses", element: <StudentRoute><MyCourses /></StudentRoute> },
+
+      // Professional-only routes
+      { path: "events", element: <ProfessionalRoute><Events /></ProfessionalRoute> },
+
+      // Shared: profile
       { path: "profile", element: <ProfileSettings /> },
-      { path: "learning-path", element: <LearningPath /> },
-      { path: "my-courses", element: <MyCourses /> },
-      { path: "events", element: <Events /> },
 
       // ---------- ADMIN ROUTES ----------
       {

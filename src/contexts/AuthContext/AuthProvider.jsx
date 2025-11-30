@@ -10,6 +10,7 @@ import {
   GithubAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 
 import { db } from "../../firebase/firebase.init";
@@ -24,10 +25,16 @@ const facebookProvider = new FacebookAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [userProfile, setUserProfile] = useState(null); // ⭐ Firestore profile
+  const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ⭐ Create Firestore Profile
+  // 🔥 Save user to Firestore (used by Register.jsx)
+  const saveUserToFirestore = async (uid, data) => {
+    const ref = doc(db, "users", uid);
+    await setDoc(ref, data, { merge: true });
+  };
+
+  // 🔥 Create user profile if not exists
   const createUserProfile = async (firebaseUser) => {
     if (!firebaseUser) return;
 
@@ -39,7 +46,7 @@ const AuthProvider = ({ children }) => {
         name: firebaseUser.displayName || "",
         email: firebaseUser.email,
         photoURL: firebaseUser.photoURL || "",
-        role: "Student",
+        role: "student", // 🔥 consistent default role
         bio: "",
         phone: "",
         facebook: "",
@@ -60,12 +67,13 @@ const AuthProvider = ({ children }) => {
           country: "",
           postal: ""
         },
-        skills: []
+        skills: [],
+        createdAt: new Date(),
       });
     }
   };
 
-  // ⭐ AUTH METHODS
+  // ⭐ Auth Methods
   const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -81,11 +89,22 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
-  const signInWithGithub = () => signInWithPopup(auth, githubProvider);
-  const signInWithFacebook = () => signInWithPopup(auth, facebookProvider);
+  const signInWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
-  // ⭐ FIREBASE AUTH LISTENER
+  const signInWithGithub = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
+
+  const signInWithFacebook = () => {
+    setLoading(true);
+    return signInWithPopup(auth, facebookProvider);
+  };
+
+  // ⭐ Auth State Listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
@@ -96,14 +115,18 @@ const AuthProvider = ({ children }) => {
         const ref = doc(db, "users", currentUser.uid);
 
         const unsubProfile = onSnapshot(ref, (snap) => {
-          setUserProfile(snap.data());
-          setLoading(false);   // ⭐ VERY IMPORTANT
+          setUserProfile({
+            uid: currentUser.uid,      // IMPORTANT
+            ...snap.data(),
+          });
+          setLoading(false);
         });
+        
 
         return () => unsubProfile();
       } else {
         setUserProfile(null);
-        setLoading(false);     // ⭐ Must stop loading here too
+        setLoading(false);
       }
     });
 
@@ -111,10 +134,10 @@ const AuthProvider = ({ children }) => {
   }, []);
 
 
-  // ⭐ EXPORT EVERYTHING
+  // ⭐ EXPORT Everything
   const authInfo = {
     user,
-    userProfile,      // 🔥 profile now available everywhere!
+    userProfile,
     loading,
 
     registerUser,
@@ -123,6 +146,8 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     signInWithGithub,
     signInWithFacebook,
+
+    saveUserToFirestore, // 🔥 needed for Register.jsx
   };
 
   return (

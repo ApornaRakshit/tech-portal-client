@@ -9,10 +9,12 @@ import "./index.css";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
+      <Toaster position="top-right" />
+
       <div className="font-urbanist max-w-7xl mx-auto">
         <RouterProvider router={router} />
-        <Toaster />
       </div>
+
     </AuthProvider>
   </StrictMode>
 );
