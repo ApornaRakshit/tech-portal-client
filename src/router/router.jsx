@@ -48,6 +48,9 @@ import ProfessionalRoute from "../routes/protected/ProfessionalRoute";
 
 // Auto Redirect by Role
 import Redirecting from "../pages/Redirecting";
+// import AddTrend from "../pages/Dashboard/Admin/AddTechTrend";
+import TechTrends from "../pages/TechTrends";
+import AddTechTrend from "../pages/Dashboard/Admin/AddTechTrend";
 
 export const router = createBrowserRouter([
   // ------------------------------
@@ -62,6 +65,7 @@ export const router = createBrowserRouter([
       { path: "tutorials", element: <Tutorials /> },
       { path: "competitive-programming", element: <CompetitiveProgramming /> },
       { path: "events", element: <EventPage /> },
+      { path: "trends", element: <TechTrends /> },  
       { path: "events/:id", element: <EventDetailsPage /> },
       { path: "events/register/:id", element: <UserRegisterEvent /> },
       { path: "bookmark", element: <BookmarkPage /> },
@@ -216,6 +220,15 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "admin/trends",
+        element: (
+          <AdminRoute>
+            <AddTechTrend />
+          </AdminRoute>
+        ),
+      },
+      
     ],
   },
 ]);

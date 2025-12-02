@@ -26,10 +26,9 @@ const DashboardLayout = () => {
   }
 
   const linkClass = ({ isActive }) =>
-    `flex items-center gap-3 px-3 py-2 rounded-lg transition ${
-      isActive
-        ? "bg-purple-100 text-purple-700 font-semibold border-r-4 border-purple-600"
-        : "text-gray-700 hover:bg-gray-100"
+    `flex items-center gap-3 px-3 py-2 rounded-lg transition ${isActive
+      ? "bg-purple-100 text-purple-700 font-semibold border-r-4 border-purple-600"
+      : "text-gray-700 hover:bg-gray-100"
     }`;
 
   return (
@@ -148,6 +147,12 @@ const DashboardLayout = () => {
                   <FiCalendar className="text-lg" /> Create Events
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/admin/trends" className={linkClass}>
+                  <FiPlusSquare className="text-lg" /> Add Tech Trend
+                </NavLink>
+              </li>
+
             </ul>
           </>
         )}
