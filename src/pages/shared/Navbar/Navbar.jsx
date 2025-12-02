@@ -52,7 +52,7 @@ const Navbar = () => {
             <li><NavLink to="/roadmap" className={getActiveClass}><TbRoute /> Roadmap</NavLink></li>
             <li><NavLink to="/resources" className={getActiveClass}><FiTool /> Resources</NavLink></li>
             <li><NavLink to="/events" className={getActiveClass}><FiCalendar /> Events</NavLink></li>
-            <li><NavLink to="/bookmark" className={getActiveClass}><FiBookmark /> Bookmark</NavLink></li>
+            <li><NavLink to="/Bookmark" className={getActiveClass}><FiBookmark /> Bookmark</NavLink></li>
           </ul>
         </div>
 
@@ -69,7 +69,7 @@ const Navbar = () => {
           <li><NavLink to="/roadmap" className={getActiveClass}> Roadmap</NavLink></li>
           <li><NavLink to="/tutorials" className={getActiveClass}> Tutorials</NavLink></li>
           <li><NavLink to="/events" className={getActiveClass}> Events</NavLink></li>
-          <li><NavLink to="/bookmark" className={getActiveClass}> Bookmark</NavLink></li>
+          <li><NavLink to="/trends" className={getActiveClass}> Tech Trends</NavLink></li>
         </ul>
       </div>
 

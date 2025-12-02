@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+// import { DataContext } from "../../contexts/DataProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import HomeCards from "./HomeCards";

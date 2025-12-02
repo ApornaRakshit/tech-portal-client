@@ -5,16 +5,20 @@ import { router } from "./router/router";
 import AuthProvider from "./contexts/AuthContext/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
+import DataProvider from "./contexts/DataProvider";
+import { BookmarkProvider } from "./contexts/BookmarkContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <Toaster position="top-right" />
+    <BookmarkProvider>
+      <AuthProvider>
+        <Toaster position="top-right" />
 
-      <div className="font-urbanist max-w-7xl mx-auto">
-        <RouterProvider router={router} />
-      </div>
+        <DataProvider className="font-urbanist max-w-7xl mx-auto">
+          <RouterProvider router={router} />
+        </DataProvider>
 
-    </AuthProvider>
+      </AuthProvider>
+    </BookmarkProvider>
   </StrictMode>
 );

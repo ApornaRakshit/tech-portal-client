@@ -25,7 +25,7 @@ import Events from "../pages/Dashboard/Events";
 import PrivateRoute from "../routes/PrivateRoute";
 import AdminRoute from "../routes/protected/AdminRoute";
 import StudentRoute from "../routes/protected/StudentRoute";
-import ProfessionalRoute from "../routes/protected/ProfessionalRoute";
+// import ProfessionalRoute from "../routes/protected/ProfessionalRoute";
 
 // Admin pages
 import AdminOverview from "../pages/Dashboard/Admin/AdminOverview";
@@ -36,6 +36,7 @@ import CreateEvents from "../pages/Dashboard/Admin/CreateEvents";
 
 // Others
 import Unauthorized from "../pages/Unauthorized";
+import BookmarkPage from "../pages/Bookmark/BookmarkPage";
 
 export const router = createBrowserRouter([
   // ---------- PUBLIC WEBSITE ----------
@@ -50,6 +51,8 @@ export const router = createBrowserRouter([
       { path: "events", element: <EventPage /> },
       { path: "events/:id", element: <EventDetailsPage /> },
       { path: "events/register/:id", element: <UserRegisterEvent /> },
+      // ⭐ ADD THIS ROUTE FOR BOOKMARK PAGE
+      { path: "bookmark", element: <BookmarkPage /> },
       { path: "unauthorized", element: <Unauthorized /> },
     ],
   },
@@ -80,7 +83,9 @@ export const router = createBrowserRouter([
       { path: "my-courses", element: <StudentRoute><MyCourses /></StudentRoute> },
 
       // Professional-only routes
-      { path: "events", element: <ProfessionalRoute><Events /></ProfessionalRoute> },
+      // { path: "events", element: <ProfessionalRoute><Events /></ProfessionalRoute> },
+      { path: "events", element: <Events /> },
+
 
       // Shared: profile
       { path: "profile", element: <ProfileSettings /> },
