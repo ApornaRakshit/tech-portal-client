@@ -11,7 +11,10 @@ import {
   FiCalendar,
   FiUsers,
   FiUser,
-  FiPlusSquare
+  FiPlusSquare,
+  FiShare2,
+  FiUserCheck,
+  FiUsers as FiMentees,
 } from "react-icons/fi";
 
 const DashboardLayout = () => {
@@ -31,7 +34,6 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-
       {/* Mobile Menu Button */}
       <button
         onClick={() => setOpen(true)}
@@ -48,16 +50,18 @@ const DashboardLayout = () => {
         />
       )}
 
-      {/* Sidebar */}
+      {/* SIDEBAR */}
       <aside
         className={`fixed lg:static top-0 left-0 z-50 h-full w-72 bg-white border-r p-6 shadow-sm
-          transition-transform duration-300 ease-in-out
-          ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
+            transition-transform duration-300 ease-in-out
+            ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
-        {/* Header for mobile */}
+        {/* Close button on mobile */}
         <div className="flex justify-between items-center mb-6 lg:hidden">
           <h2 className="text-lg font-semibold">Menu</h2>
-          <button onClick={() => setOpen(false)} className="text-xl">✕</button>
+          <button onClick={() => setOpen(false)} className="text-xl">
+            ✕
+          </button>
         </div>
 
         {/* Logo */}
@@ -65,14 +69,14 @@ const DashboardLayout = () => {
           <TechPortalLogo />
         </div>
 
-        {/* GENERAL */}
+        {/* ============= GENERAL ============= */}
         <p className="text-xs font-semibold text-gray-400 uppercase mb-2 px-2">
           General
         </p>
 
         <ul className="space-y-1 mb-6">
           <li>
-            <NavLink to="/dashboard/admin/overview" className={linkClass}>
+            <NavLink to="/dashboard" className={linkClass}>
               <FiHome className="text-lg" /> Overview
             </NavLink>
           </li>
@@ -84,7 +88,7 @@ const DashboardLayout = () => {
           </li>
         </ul>
 
-        {/* STUDENT MENU */}
+        {/* ============= STUDENT MENU ============= */}
         {role === "student" && (
           <>
             <p className="text-xs font-semibold text-gray-400 uppercase mb-2 px-2">
@@ -113,7 +117,7 @@ const DashboardLayout = () => {
           </>
         )}
 
-        {/* ADMIN MENU */}
+        {/* ============= ADMIN MENU ============= */}
         {role === "admin" && (
           <>
             <p className="text-xs font-semibold text-gray-400 uppercase mt-6 mb-2 px-2">
@@ -148,13 +152,64 @@ const DashboardLayout = () => {
           </>
         )}
 
+        {/* ============= PROFESSIONAL MENU ============= */}
+        {role === "professional" && (
+          <>
+            <p className="text-xs font-semibold text-gray-400 uppercase mt-6 mb-2 px-2">
+              Professional
+            </p>
+
+            <ul className="space-y-1">
+              <li>
+                <NavLink to="/dashboard/professional" className={linkClass}>
+                  <FiUser className="text-lg" /> Dashboard
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/dashboard/professional/share-resources"
+                  className={linkClass}
+                >
+                  <FiShare2 className="text-lg" /> Share Resources
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/dashboard/professional/mentees"
+                  className={linkClass}
+                >
+                  <FiMentees className="text-lg" /> Manage Mentees
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/dashboard/professional/mentorship"
+                  className={linkClass}
+                >
+                  <FiUserCheck className="text-lg" /> Mentorship Sessions
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/dashboard/professional/events"
+                  className={linkClass}
+                >
+                  <FiCalendar className="text-lg" /> Host / Join Events
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
       </aside>
 
-      {/* MAIN CONTENT — FIXED (NO LEFT GAP!) */}
+      {/* MAIN CONTENT */}
       <main className="flex-1 p-8">
         <Outlet />
       </main>
-
     </div>
   );
 };

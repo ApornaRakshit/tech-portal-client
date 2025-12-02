@@ -1,3 +1,4 @@
+// src/contexts/AuthContext/AuthProvider.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../../firebase/firebase.init";
 
@@ -10,7 +11,6 @@ import {
   GithubAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
-  updateProfile,
 } from "firebase/auth";
 
 import { db } from "../../firebase/firebase.init";
@@ -19,6 +19,7 @@ import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
+// Providers
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -28,13 +29,7 @@ const AuthProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔥 Save user to Firestore (used by Register.jsx)
-  const saveUserToFirestore = async (uid, data) => {
-    const ref = doc(db, "users", uid);
-    await setDoc(ref, data, { merge: true });
-  };
-
-  // 🔥 Create user profile if not exists
+  // ⭐ Create Firestore user profile if not exists
   const createUserProfile = async (firebaseUser) => {
     if (!firebaseUser) return;
 
@@ -46,34 +41,70 @@ const AuthProvider = ({ children }) => {
         name: firebaseUser.displayName || "",
         email: firebaseUser.email,
         photoURL: firebaseUser.photoURL || "",
-        role: "student", // 🔥 consistent default role
+        role: "student", // ⭐ default role
+
         bio: "",
         phone: "",
         facebook: "",
         linkedin: "",
         github: "",
         resumeURL: "",
+
         academic: {
           studentId: "",
           session: "",
           semester: "",
           dob: "",
-          department: ""
+          department: "",
         },
+
         address: {
           street: "",
           city: "",
           state: "",
           country: "",
-          postal: ""
+          postal: "",
         },
+
         skills: [],
+
+        // ⭐ Learning Progress Fields
+        progress: {
+          completedLessons: 0,
+          totalLessons: 0,
+          percentage: 0,
+        },
+
         createdAt: new Date(),
       });
     }
   };
 
-  // ⭐ Auth Methods
+  // ⭐ Update learning progress (reusable)
+  const updateProgress = async (completedLessons, totalLessons) => {
+    if (!user) return;
+
+    const percentage =
+      totalLessons === 0
+        ? 0
+        : Math.round((completedLessons / totalLessons) * 100);
+
+    const ref = doc(db, "users", user.uid);
+
+    await setDoc(
+      ref,
+      {
+        progress: {
+          completedLessons,
+          totalLessons,
+          percentage,
+        },
+      },
+      { merge: true }
+    );
+  };
+
+  // ⭐ Authentication methods
   const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -89,6 +120,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // ⭐ Social Login - MUST MATCH SocialLogin.jsx
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
@@ -116,12 +148,11 @@ const AuthProvider = ({ children }) => {
 
         const unsubProfile = onSnapshot(ref, (snap) => {
           setUserProfile({
-            uid: currentUser.uid,      // IMPORTANT
+            uid: currentUser.uid,
             ...snap.data(),
           });
           setLoading(false);
         });
-        
 
         return () => unsubProfile();
       } else {
@@ -133,8 +164,7 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-
-  // ⭐ EXPORT Everything
+  // ⭐ Export values
   const authInfo = {
     user,
     userProfile,
@@ -143,11 +173,14 @@ const AuthProvider = ({ children }) => {
     registerUser,
     loginUser,
     logoutUser,
+
+    // Social Logins
     signInWithGoogle,
     signInWithGithub,
     signInWithFacebook,
 
-    saveUserToFirestore, // 🔥 needed for Register.jsx
+    // Learning progress update
+    updateProgress,
   };
 
   return (

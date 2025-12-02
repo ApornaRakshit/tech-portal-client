@@ -1,58 +1,113 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase.init";
+import { useAuth } from "../../contexts/AuthContext/AuthProvider";
 
 const LearningPath = () => {
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  }, []);
+  const { user } = useAuth();
+  const [completedLessons, setCompletedLessons] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const steps = [
-    { title: "Phase: 1", details: "Computer Fundamentals, Programming Languages : C/C++" },
-    { title: "Phase: 2", details: "Competitive Programming, DSA" },
-    { title: "Phase: 3", details: "Git & GitHub, Web Development (HTML, CSS, JS, React, Firebase, Node.js, Express.js, MongoDB)" },
-    { title: "Phase: 4", details: "MySQL, SQL, Python" },
-    { title: "Phase: 5", details: "DevOps Basics" },
-    { title: "Phase: 6", details: "Software Development" },
-    { title: "Phase: 7", details: "Machine Learning / Artificial Intelligence" },
-    { title: "Phase: 8", details: "Capstone Project, Interview Prep" }
+  // ********** LESSON LIST **********
+  const lessons = [
+    "Introduction to Programming",
+    "Variables & Data Types",
+    "Loops & Conditions",
+    "Functions Basics",
+    "React Basics",
+    "React Components",
+    "Firebase Authentication",
+    "Database Firestore"
   ];
 
-  return (
-    <div className="px-5 py-5">
+  // ********** LOAD USER PROGRESS **********
+  useEffect(() => {
+    if (!user?.uid) return;
 
-      <h1 className="text-3xl font-bold mb-2">Learning Path</h1>
-      <p className="text-gray-600 mb-10">
-        Follow your personalized learning roadmap to grow in your IT career.
+    const fetchProgress = async () => {
+      const ref = doc(db, "users", user.uid);
+      const snap = await getDoc(ref);
+
+      if (snap.exists()) {
+        setCompletedLessons(snap.data().completedLessons || []);
+      }
+      setLoading(false);
+    };
+
+    fetchProgress();
+  }, [user]);
+
+  // ********** MARK LESSON COMPLETE **********
+  const handleLessonComplete = async (lesson) => {
+    const ref = doc(db, "users", user.uid);
+
+    const updatedList = [...completedLessons, lesson];
+
+    await updateDoc(ref, { completedLessons: updatedList });
+    setCompletedLessons(updatedList);
+  };
+
+  // ********** BUTTON UI **********
+  const renderLessonButton = (lesson) => {
+    const isCompleted = completedLessons.includes(lesson);
+
+    if (isCompleted) {
+      return (
+        <button
+          disabled
+          className="px-4 py-2 bg-green-500 text-white rounded-lg cursor-not-allowed"
+        >
+          Completed ✓
+        </button>
+      );
+    }
+
+    return (
+      <button
+        onClick={() => handleLessonComplete(lesson)}
+        className="px-4 py-2 bg-blue-400 hover:bg-blue-500 text-white rounded-lg"
+      >
+        Mark as Completed
+      </button>
+    );
+  };
+
+  if (loading) return <p className="text-center p-10">Loading...</p>;
+
+  // ********** PROGRESS **********
+  const progress = Math.round((completedLessons.length / lessons.length) * 100);
+
+  return (
+    <div className="p-8">
+      <h1 className="text-4xl font-bold mb-6">My Learning Path</h1>
+
+      <p className="text-xl font-semibold mb-4">
+        Progress: <span className="text-purple-600">{progress}%</span>
       </p>
 
-      {/* TIMELINE */}
-      <div className="relative max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* Vertical Line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 transform -translate-x-1/2"></div>
-
-        {steps.map((step, index) => (
+        {lessons.map((lesson, index) => (
           <div
             key={index}
-            data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
-            className={`mb-12 flex items-center ${
-              index % 2 === 0 ? "justify-start" : "justify-end"
-            }`}
+            className="p-5 border rounded-xl shadow-sm bg-white flex justify-between items-center hover:shadow-lg transition-all"
           >
-            <div className="w-1/2">
-              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200 hover:shadow-lg transition">
-                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.details}</p>
-              </div>
+            <div>
+              <h3 className="text-lg font-semibold">{lesson}</h3>
+
+              {completedLessons.includes(lesson) ? (
+                <p className="text-green-600 text-sm mt-1">✓ Completed</p>
+              ) : (
+                <p className="text-gray-500 text-sm mt-1">Not completed</p>
+              )}
             </div>
 
-            {/* Dot */}
-            <div className="absolute left-1/2 w-4 h-4 bg-purple-500 rounded-full transform -translate-x-1/2 border-4 border-white"></div>
+            {/* Dynamic Button */}
+            {renderLessonButton(lesson)}
           </div>
         ))}
-      </div>
 
+      </div>
     </div>
   );
 };

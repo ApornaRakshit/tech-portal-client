@@ -1,6 +1,6 @@
+// src/routes/protected/AdminRoute.jsx
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext/AuthProvider";
-
 
 const AdminRoute = ({ children }) => {
   const { userProfile, loading } = useAuth();
@@ -13,12 +13,10 @@ const AdminRoute = ({ children }) => {
     );
   }
 
-  // ❌ Not admin → redirect to dashboard or unauthorized page
   if (userProfile?.role !== "admin") {
     return <Navigate to="/unauthorized" replace />;
   }
 
-  // ✅ Admin → access granted
   return children;
 };
 

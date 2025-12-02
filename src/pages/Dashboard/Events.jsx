@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useAuth } from "../../contexts/AuthContext/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Events = () => {
   const { user } = useAuth();
@@ -9,7 +10,7 @@ const Events = () => {
   const [savedEvents, setSavedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const loadEvents = () => {
     if (!user?.email) return;
 
     axiosSecure
@@ -22,7 +23,29 @@ const Events = () => {
         console.error("Error loading saved events:", err);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    loadEvents();
   }, [user]);
+
+  // 🔥 Cancel registration by ID
+  const handleCancel = async (id) => {
+    const confirmDelete = confirm("Are you sure you want to cancel?");
+    if (!confirmDelete) return;
+
+    try {
+      const res = await axiosSecure.delete(`/event-registrations/${id}`);
+
+      if (res.data.success) {
+        toast.success("Registration cancelled");
+        loadEvents(); // reload UI
+      }
+    } catch (err) {
+      toast.error("Failed to cancel event");
+      console.error(err);
+    }
+  };
 
   if (loading) {
     return <p className="p-10 text-center">Loading saved events...</p>;
@@ -41,6 +64,14 @@ const Events = () => {
             <p><strong>Date:</strong> {event.date}</p>
             <p><strong>Time:</strong> {event.time}</p>
             <p><strong>Mode:</strong> {event.mode}</p>
+
+            {/* ❌ Cancel Button */}
+            <button
+              onClick={() => handleCancel(event._id)}
+              className="mt-3 bg-red-500 hover:bg-red-600 text-white py-1 px-4 rounded"
+            >
+              Cancel Registration
+            </button>
           </div>
         ))}
       </div>

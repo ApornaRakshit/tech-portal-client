@@ -1,3 +1,4 @@
+// src/routes/protected/StudentRoute.jsx
 import { Navigate } from "react-router-dom";
 import useRole from "../../hooks/useRole";
 
