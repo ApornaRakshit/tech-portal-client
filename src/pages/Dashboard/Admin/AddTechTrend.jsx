@@ -11,7 +11,7 @@ const AddTechTrend = () => {
 
     const trend = { title, source, link, desc };
 
-    const res = await fetch("http://localhost:5000/trends", {
+    const res = await fetch("https://tech-portal-server-five.vercel.app/trends", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(trend),

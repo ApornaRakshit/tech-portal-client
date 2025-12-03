@@ -4,7 +4,7 @@ const TechTrends = () => {
   const [trends, setTrends] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/trends")
+    fetch("https://tech-portal-server-five.vercel.app/trends")
       .then(res => res.json())
       .then(data => setTrends(data))
       .catch(err => console.log(err));
