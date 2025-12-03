@@ -1,6 +1,4 @@
 import React from "react";
-
-// Import images
 import cpImg from "../assets/images/cp.jpg";
 import webImg from "../assets/images/web.jpg";
 import fullImg from "../assets/images/fullstack.jpg";
@@ -10,7 +8,6 @@ import mlImg from "../assets/images/ml.jpg";
 import cyberImg from "../assets/images/cyber.jpg";
 import generalcareer from "../assets/images/general-career.png"
 
-// Card data
 const cards = [
     {
         title: "Career Advice",

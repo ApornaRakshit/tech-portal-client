@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { FaBookmark } from "react-icons/fa";
@@ -12,7 +11,7 @@ const EventCard = ({ event }) => {
   return (
     <div className="relative bg-white shadow-md rounded-xl p-5 hover:shadow-xl hover:-translate-y-1 transition cursor-pointer">
 
-      {/* ⭐ Bookmark Icon */}
+      {/* Bookmark Icon */}
       <button
         onClick={(e) => {
           e.preventDefault();

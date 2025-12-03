@@ -10,7 +10,7 @@ const Redirecting = () => {
     if (loading) return;
     if (!userProfile) return;
 
-    // ✅ Send based on role
+    // Send based on role
     if (userProfile.role === "admin") {
       navigate("/dashboard/admin/overview");
     } else if (userProfile.role === "professional") {

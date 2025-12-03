@@ -22,12 +22,11 @@ const HomeRoadmap = () => {
   return (
     <div className="py-16 px-4 sm:px-6">
 
-      {/* Prevent Overflow */}
+      
       <div className="w-full overflow-x-hidden">
 
         <div className="relative max-w-4xl mx-auto">
 
-          {/* Timeline Line — Desktop Only */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500"></div>
 
           {steps.map((step, index) => (

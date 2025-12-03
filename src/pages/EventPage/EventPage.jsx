@@ -43,7 +43,7 @@ const EventPage = () => {
             key={event._id}
             event={event}
 
-            // ⭐ HIDE star if already registered
+            // HIDE star if already registered
             isRegistered={registered.includes(event.id)}
           />
         ))}

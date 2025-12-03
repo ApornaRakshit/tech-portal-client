@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "https://tech-portal-server-five.vercel.app",   // ✅ FIXED
+  baseURL: "https://tech-portal-server-five.vercel.app",   
 });
 
 const useAxiosSecure = () => axiosSecure;

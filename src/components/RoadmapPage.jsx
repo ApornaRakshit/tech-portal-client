@@ -4,8 +4,6 @@ import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 
 import RoadmapBanner from "./RoadmapBanner";
-
-// 🔥 IMPORT ALL IMAGES CORRECTLY
 import careerImg from "../assets/images/general-career.png";
 import cpImg from "../assets/images/cp.jpg";
 import webImg from "../assets/images/web.jpg";

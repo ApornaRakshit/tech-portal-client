@@ -13,7 +13,7 @@ export const BookmarkProvider = ({ children }) => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }, [bookmarks]);
 
-  // ⭐ Toggle bookmark for both events & tutorials
+  // Toggle bookmark for both events & tutorials
   const toggleBookmark = (item, type = "tutorial") => {
     const id = item._id || item.link; // events: _id, tutorials: link
 
@@ -33,7 +33,7 @@ export const BookmarkProvider = ({ children }) => {
     }
   };
 
-  // ⭐ Check if bookmarked
+  //  Check if bookmarked
   const isBookmarked = (id) => bookmarks.some((b) => b.id === id);
 
   return (

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 const CourseCard = ({ course, clickable = true }) => {
     // Fix image URL
     const imageUrl = course.thumbnail?.startsWith("/")

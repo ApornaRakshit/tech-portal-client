@@ -9,7 +9,7 @@ const TutorialCard = ({ tutorial, clickable = true }) => {
 
   const bookmarked = isBookmarked(tutorial.link);
 
-  // ⭐ FIX: Correct the image path
+  // FIX: Correct the image path
   const imageUrl = tutorial.thumbnail.startsWith("/")
     ? tutorial.thumbnail
     : `/tutorials/${tutorial.thumbnail}`;
@@ -35,7 +35,7 @@ const TutorialCard = ({ tutorial, clickable = true }) => {
           h-full flex flex-col
         "
       >
-        {/* ⭐ Bookmark Icon */}
+        {/*  Bookmark Icon */}
         <button
           onClick={(e) => {
             e.preventDefault(); // Prevent opening the link
