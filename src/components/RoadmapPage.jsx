@@ -28,7 +28,8 @@ const RoadmapPage = () => {
     { title: "Phase: 5", details: "DevOps Basics" },
     { title: "Phase: 6", details: "Software Development" },
     { title: "Phase: 7", details: "Machine Learning / Artificial Intelligence" },
-    { title: "Phase: 8", details: "Capstone Project, Interview Prep" },
+    { title: "Phase: 8", details: "Deep learning/ Data Science" },
+    { title: "Phase: 9", details: "Capstone Project, Interview Prep" },
   ];
 
   return (

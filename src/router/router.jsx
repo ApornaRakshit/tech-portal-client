@@ -100,7 +100,7 @@ export const router = createBrowserRouter([
     ),
 
     children: [
-      // ⭐ Default Student Dashboard Home
+      //  Default Student Dashboard Home
       {
         index: true,
         element: (
@@ -129,7 +129,7 @@ export const router = createBrowserRouter([
         ),
       },
 
-      // ⭐ Available for ALL logged-in users
+      //  Available for ALL logged-in users
       { path: "events", element: <Events /> },
       { path: "profile", element: <ProfileSettings /> },
 
