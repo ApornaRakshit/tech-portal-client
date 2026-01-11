@@ -141,11 +141,11 @@ Follow these steps to run the project locally:
 ```bash
 git clone https://github.com/ApornaRakshit/tech-portal-client.git
 cd tech-portal-client
-
+```
 2️⃣ Go to the project folder
-bash
-Copy code
+```bash
 cd tech-portal-client
+```
 3️⃣ Install dependencies
 bash
 Copy code
