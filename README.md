@@ -134,10 +134,14 @@ VITE_FIREBASE_APP_ID=
 ⚙ Installation & Setup
 Follow these steps to run the project locally:
 
-1️⃣ Clone the repository
-bash
-Copy code
+## ⚙ Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/ApornaRakshit/tech-portal-client.git
+cd tech-portal-client
+
 2️⃣ Go to the project folder
 bash
 Copy code
