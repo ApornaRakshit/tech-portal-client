@@ -193,9 +193,10 @@ Learning roadmap visualization
 This project is developed for educational and learning purposes.
 
 📬 Contact
-Aporna Rakshit
-Computer Science & Engineering Student
+**Aporna Rakshit**  
+Computer Science & Engineering Student  
 Full Stack Developer (MERN)
+
 ```
 GitHub: https://github.com/ApornaRakshit
 LinkedIn: https://www.linkedin.com/in/apornarakshit/
