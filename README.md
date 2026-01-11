@@ -168,15 +168,15 @@ The frontend communicates with a RESTful backend API for:
 
 User authentication
 
-Technology articles & tutorials
+- Technology articles & tutorials
 
-Learning pathways
+- Learning pathways
 
-Categories and content filtering
+- Categories and content filtering
 
-Secure JWT authorization
+- Secure JWT authorization
 
-All API requests are handled using Axios.
+- All API requests are handled using Axios.
 
 🔮 Future Enhancements
 Personalized learning recommendations
