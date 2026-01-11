@@ -85,4 +85,33 @@ It handles:
 
 ## 📂 Folder Structure
 
+TECH-PORTAL-CLIENT/
+├── .firebase/
+├── dist/
+├── node_modules/
+├── public/
+│   ├── data/
+│   ├── tutorials/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── contexts/
+│   ├── firebase/
+│   ├── hooks/
+│   ├── layouts/
+│   ├── pages/
+│   ├── router/
+│   ├── routes/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── .env.local
+├── .firebaserc
+├── firebase.json
+├── eslint.config.js
+├── index.html
+├── package.json
+└── package-lock.json
 
