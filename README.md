@@ -178,26 +178,33 @@ User authentication
 
 - All API requests are handled using Axios.
 
-🔮 Future Enhancements
-Personalized learning recommendations
+---
 
-AI-based career guidance
+## 📈 Future Enhancements
+  
+- Personalized learning recommendations  
+- AI-based career guidance    
+- Learning roadmap visualization  
 
-User dashboard & progress tracking
+---
 
-Bookmark and save articles
+## 📜 License
 
-Learning roadmap visualization
-
-📜 License
 This project is developed for educational and learning purposes.
 
-📬 Contact
-**Aporna Rakshit**  
-Computer Science & Engineering Student  
-Full Stack Developer (MERN)
+---
 
-```
-GitHub: https://github.com/ApornaRakshit
-LinkedIn: https://www.linkedin.com/in/apornarakshit/
-```
+## 📬 Contact
+
+**Developer:** Aporna Rakshit  
+
+Computer Science & Engineering Student  
+Full Stack Developer (MERN)  
+
+### 🔗 Links
+
+- GitHub: https://github.com/ApornaRakshit  
+- LinkedIn: https://www.linkedin.com/in/apornarakshit/  
+
+---
+
