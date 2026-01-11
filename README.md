@@ -1,4 +1,4 @@
-# 🚀 Tech Portal — Technology Evolution & Learning Platform (Client)
+# 🚀 Technology Evolution Portal (Client)
 
 A modern, responsive, and user-friendly technology learning platform built with **React, Vite, and Tailwind CSS**.  
 This repository contains the complete frontend of **Tech Portal**, a centralized platform for technology news, learning pathways, and career guidance for students and IT professionals.
