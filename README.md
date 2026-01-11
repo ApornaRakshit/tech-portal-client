@@ -30,177 +30,29 @@ This repository contains the complete frontend of **Tech Portal**, a centralized
 
 The **Tech Portal Frontend** provides an intuitive and engaging interface for users to explore trending technologies, follow structured learning paths, and stay updated with the latest IT innovations.
 
-It serves as the primary interaction layer and delivers a smooth experience across technology content, career guidance, and learning resources.
-
-It handles:
-
-- User authentication with Firebase  
-- Technology news & tutorials browsing  
-- Learning pathway exploration  
-- Category-based content filtering  
-- Responsive UI across all devices  
-- Secure API communication  
-
 ---
 
 ## 🚀 Features
 
-### User-Facing Features
-
 - Browse trending technology news & articles  
 - Explore learning pathways (Beginner → Advanced)  
 - Discover emerging technologies (AI, ML, Web, Cybersecurity, etc.)  
-- Firebase authentication (login & registration)  
+- Firebase authentication  
 - Fast loading performance with Vite  
 - Fully responsive design  
-- Category-wise content browsing  
-
-### Admin / Content Management (Backend Connected)
-
-- Manage technology articles and tutorials  
-- Manage categories  
-- Secure JWT-based API access  
 
 ---
 
 ## 🛠 Tech Stack
 
-### Frontend Framework & Tools
-
-- **React.js** — Component-based UI  
-- **Vite** — Fast development environment  
-- **Tailwind CSS** — Utility-first styling  
-- **Firebase Authentication** — Secure user login  
-- **Axios** — API communication  
-- **React Router DOM** — Routing management  
-
-### Supporting Libraries
-
-- React Icons  
-- React Hot Toast  
-- SweetAlert2  
-- React Spinners  
+- React.js  
+- Vite  
+- Tailwind CSS  
+- Firebase Authentication  
+- Axios  
+- React Router DOM  
 
 ---
 
 ## 📂 Folder Structure
 
-TECH-PORTAL-CLIENT/
-├── .firebase/
-├── dist/
-├── node_modules/
-│
-├── public/
-│ ├── data/
-│ ├── tutorials/
-│ └── vite.svg
-│
-├── src/
-│ ├── assets/
-│ ├── components/
-│ ├── contexts/
-│ ├── firebase/
-│ ├── hooks/
-│ ├── layouts/
-│ ├── pages/
-│ ├── router/
-│ ├── routes/
-│ ├── App.jsx
-│ ├── App.css
-│ ├── index.css
-│ └── main.jsx
-│
-├── .env.local
-├── .firebaserc
-├── firebase.json
-├── eslint.config.js
-├── index.html
-├── package.json
-└── package-lock.json
-
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-VITE_API_URL=
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-
-⚙ Installation & Setup
-1️⃣ Clone the repository
-git clone https://github.com/ApornaRakshit/tech-portal-client.git
-
-2️⃣ Navigate to the project folder
-cd tech-portal-client
-
-3️⃣ Install dependencies
-npm install
-
-4️⃣ Run the development server
-npm run dev
-
-
-App runs on:
-
-http://localhost:5173
-
-📜 Available Scripts
-Command	Description
-npm run dev	Start development server
-npm run build	Build for production
-npm run preview	Preview production build
-🌐 Deployment
-
-Frontend deployed using Firebase Hosting
-Backend deployed using Vercel
-
-🔗 Live Site: https://tech-portal-30529.web.app
-
-🔌 API Integration Overview
-
-The frontend communicates with a RESTful backend API for:
-
-User authentication
-
-Tech articles & tutorials
-
-Categories & learning paths
-
-Secure JWT authorization
-
-Axios is used for all API communication.
-
-🔮 Future Enhancements
-
-Personalized learning recommendations
-
-AI-based career guidance
-
-User dashboard & progress tracking
-
-Bookmark & save articles
-
-Roadmap visualization
-
-📜 License
-
-This project is developed for educational and learning purposes.
-
-📬 Contact
-
-Aporna Rakshit
-Computer Science & Engineering Student
-Full Stack Developer (MERN)
-
-GitHub: https://github.com/ApornaRakshit
-
-Portfolio: (Add your portfolio link)
-LinkedIn: (Add your LinkedIn link)
