@@ -95,7 +95,7 @@ These are used to configure the connection to Firebase Authentication and the ba
 
 ---
 
-### Option 1: Create Your Own Firebase Project (Recommended)
+### Option 1
 
 1. Go to Firebase Console: https://firebase.google.com  
 2. Create a new Firebase project  
@@ -110,7 +110,7 @@ These are used to configure the connection to Firebase Authentication and the ba
 
 If you want to use the live project environment for testing purposes, you can contact me on LinkedIn.
 
-👉 LinkedIn: (Add your LinkedIn profile link here)
+LinkedIn: https://www.linkedin.com/in/apornarakshit/
 
 ---
 
