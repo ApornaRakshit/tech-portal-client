@@ -88,14 +88,48 @@ TECH-PORTAL-CLIENT/
 └── package-lock.json
 ```
 
-VITE_API_URL=
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-These variables are used to connect the frontend with Firebase authentication and the backend API.
+## 🔐 Environment Variables
+
+To run the Tech Portal frontend locally, several environment variables are required.  
+These are used to configure the connection to Firebase Authentication and the backend API.
+
+---
+
+### Option 1: Create Your Own Firebase Project (Recommended)
+
+1. Go to Firebase Console: https://firebase.google.com  
+2. Create a new Firebase project  
+3. Add a Web App to the project  
+4. Enable **Email/Password Authentication**  
+5. Copy the Firebase configuration keys  
+6. Set your backend API URL (local or deployed)
+
+---
+
+### Option 2: Use Existing Environment (Optional)
+
+If you want to use the live project environment for testing purposes, you can contact me on LinkedIn.
+
+👉 LinkedIn: (Add your LinkedIn profile link here)
+
+---
+
+### Create `.env.local` File
+
+After getting the required credentials, create a file named:
+
+
+in the root directory and add the following:
+
+```env
+VITE_API_URL=your_backend_api_url
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+```
 
 ⚙ Installation & Setup
 Follow these steps to run the project locally:
