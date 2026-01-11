@@ -147,21 +147,22 @@ cd tech-portal-client
 cd tech-portal-client
 ```
 3️⃣ Install dependencies
-bash
+```bash
 Copy code
 npm install
+```
 4️⃣ Start the development server
-bash
+```bash
 Copy code
 npm run dev
-
+```
 
 🌐 Deployment
 Frontend deployed using Firebase Hosting
 Backend deployed using Vercel
-
+```
 🔗 Live Website: https://tech-portal-30529.web.app
-
+```
 🔌 API Integration Overview
 The frontend communicates with a RESTful backend API for:
 
@@ -195,7 +196,7 @@ This project is developed for educational and learning purposes.
 Aporna Rakshit
 Computer Science & Engineering Student
 Full Stack Developer (MERN)
-
+```
 GitHub: https://github.com/ApornaRakshit
 LinkedIn: https://www.linkedin.com/in/apornarakshit/
-
+```
